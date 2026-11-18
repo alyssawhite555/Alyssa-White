@@ -6,16 +6,16 @@ function getInitialTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme;
   } catch (error) {
-    // Continue with the operating-system preference if storage is unavailable.
+    // Use the system preference when browser storage is unavailable.
   }
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 function applyTheme(theme) {
   root.dataset.theme = theme;
-  const isDark = theme === 'dark';
-  themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-  themeToggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  const nextMode = theme === 'dark' ? 'light' : 'dark';
+  themeToggle.setAttribute('aria-label', `Switch to ${nextMode} mode`);
+  themeToggle.setAttribute('title', `Switch to ${nextMode} mode`);
 }
 
 applyTheme(getInitialTheme());
@@ -25,15 +25,15 @@ themeToggle.addEventListener('click', () => {
   try {
     localStorage.setItem('theme', nextTheme);
   } catch (error) {
-    // Theme still changes for this visit if storage is disabled.
+    // Theme remains active for this visit even if storage is unavailable.
   }
 });
 
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
 
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const revealItems = document.querySelectorAll('.reveal');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if ('IntersectionObserver' in window && !reduceMotion) {
   const observer = new IntersectionObserver((entries, currentObserver) => {
     entries.forEach((entry) => {
@@ -42,7 +42,7 @@ if ('IntersectionObserver' in window && !reduceMotion) {
         currentObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
   revealItems.forEach((item) => observer.observe(item));
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
