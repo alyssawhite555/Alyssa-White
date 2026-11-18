@@ -1,110 +1,604 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Alyssa White is a Tulane University student interested in public relations, social media, and creative communications.">
-  <meta name="theme-color" content="#f6f4ef">
-  <title>Alyssa White — Communications &amp; Creative Strategy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alyssa White | Creative Portfolio</title>
+
+<style>
+:root {
+  --bg: #f5f3ee;
+  --surface: #ebe8e1;
+  --text: #25231f;
+  --muted: #777269;
+  --accent: #8a7967;
+  --line: #d8d3ca;
+}
+
+body.dark {
+  --bg: #201f1d;
+  --surface: #2b2926;
+  --text: #f3f0e9;
+  --muted: #aaa49a;
+  --accent: #c6ad91;
+  --line: #45413b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  transition: background .3s, color .3s;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 8%;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 16px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+#theme-toggle {
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: transparent;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.hero {
+  min-height: 600px;
+  padding: 130px 10% 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(65px, 12vw, 145px);
+  font-weight: normal;
+  line-height: .95;
+  letter-spacing: -7px;
+}
+
+.hero-subtitle {
+  font-family: Georgia, serif;
+  font-size: clamp(20px, 3vw, 30px);
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 30px;
+}
+
+.hero-description {
+  max-width: 480px;
+  color: var(--muted);
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  margin-top: 85px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+section.content-section {
+  padding: 100px 10%;
+  border-top: 1px solid var(--line);
+}
+
+.section-heading {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 45px;
+  margin-bottom: 35px;
+}
+
+.section-number {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.about-text {
+  max-width: 720px;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  line-height: 1.7;
+}
+
+.about-extra {
+  max-width: 650px;
+  margin-top: 25px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.experience-card {
+  background: var(--surface);
+  padding: 32px;
+  border: 1px solid var(--line);
+  transition: transform .3s;
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-number {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+
+.experience-card h3 {
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: normal;
+  margin: 18px 0 8px;
+}
+
+.card-subtitle {
+  color: var(--accent);
+  font-size: 12px;
+  margin-bottom: 17px;
+}
+
+.experience-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.education-card {
+  border-left: 2px solid var(--accent);
+  padding: 5px 0 5px 25px;
+  margin-bottom: 35px;
+}
+
+.education-card h3 {
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: normal;
+}
+
+.education-card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.skill {
+  border: 1px solid var(--line);
+  padding: 12px 20px;
+  font-size: 12px;
+  letter-spacing: .5px;
+  color: var(--muted);
+}
+
+.interests {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 35px;
+}
+
+.interest {
+  background: var(--surface);
+  padding: 25px 15px;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 19px;
+}
+
+.contact-section {
+  text-align: center;
+}
+
+.contact-section .section-heading {
+  font-size: clamp(40px, 7vw, 75px);
+}
+
+.contact-section p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.contact-link {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 13px 30px;
+  border: 1px solid var(--text);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
+.contact-link:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 25px 10%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.reveal {
+  animation: appear 1s ease both;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width: 650px) {
+  nav {
+    padding: 20px 5%;
+  }
+
+  .nav-links {
+    gap: 10px;
+    font-size: 9px;
+  }
+
+  .logo {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  #theme-toggle {
+    padding: 6px;
+    font-size: 9px;
+  }
+
+  .hero {
+    padding: 100px 7%;
+    min-height: 520px;
+  }
+
+  .hero h1 {
+    letter-spacing: -4px;
+  }
+
+  section.content-section {
+    padding: 75px 7%;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interests {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    font-size: 37px;
+  }
+
+  .hero-bottom {
+    font-size: 8px;
+  }
+
+  footer {
+    padding: 20px 7%;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+}
+</style>
 </head>
+
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="site-header">
-    <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="Alyssa White, home">AW<span>.</span></a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
-          <svg class="icon icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
-          <svg class="icon icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
-        </button>
-      </div>
-    </nav>
-  </header>
 
-  <main id="main-content">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span class="eyebrow-line"></span> Tulane University · New Orleans</p>
-          <h1 id="hero-title">Alyssa <em>White</em></h1>
-          <p class="hero-role">Communications student &amp; creative storyteller</p>
-          <p class="hero-intro">I bring people and ideas together through thoughtful public relations, social media, and creative content.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#experience">Explore my work <span aria-hidden="true">↗</span></a>
-            <a class="text-link" href="#contact">Let’s connect <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-        <div class="hero-art reveal" aria-label="Alyssa White monogram illustration">
-          <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
-          <div class="art-sun"></div>
-          <div class="monogram-card"><span class="monogram">AW</span><span class="monogram-caption">Curious by nature.<br>Creative by design.</span></div>
-          <span class="art-spark spark-one" aria-hidden="true">✳</span><span class="art-spark spark-two" aria-hidden="true">✳</span>
-          <span class="art-stamp">EST. <span>2008</span></span>
-        </div>
-      </div>
-      <div class="hero-bottom container"><span>01 — 04</span><span>Scroll to discover</span><span class="scroll-line" aria-hidden="true"></span></div>
-    </section>
+<nav>
+  <a class="logo" href="#home">ALYSSA WHITE</a>
 
-    <section class="section about" id="about" aria-labelledby="about-title">
-      <div class="container about-grid">
-        <div class="about-heading reveal"><p class="section-kicker">01 / A little about me</p><h2 id="about-title">Communication<br>with <em>purpose.</em></h2></div>
-        <div class="about-copy reveal">
-          <p class="lead">I’m a Tulane University student drawn to the way clear, creative communication can bring people closer.</p>
-          <p>My experience spans social media, public relations, student leadership, and community activities. I enjoy turning ideas into engaging content and helping people feel part of the conversation.</p>
-          <p>Outside of communications, I love painting, running, and dancing. I’m always open to learning, exploring new ideas, and working with people who care about their communities.</p>
-          <div class="about-note"><span class="note-mark" aria-hidden="true">✳</span><span>People-first thinking, with a creative point of view.</span></div>
-        </div>
-      </div>
-    </section>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <button id="theme-toggle" onclick="toggleTheme()">DARK MODE</button>
+  </div>
+</nav>
 
-    <section class="section experience" id="experience" aria-labelledby="experience-title">
-      <div class="container">
-        <div class="section-heading reveal"><div><p class="section-kicker">02 / Experience &amp; activities</p><h2 id="experience-title">Learning by <em>doing.</em></h2></div><p class="heading-aside">A few places where I’ve learned, contributed, and grown.</p></div>
-        <div class="cards-grid">
-          <article class="card card-feature reveal"><div class="card-top"><span class="card-index">01</span><span class="card-type">Internship</span></div><div><p class="card-category">Social media · Content</p><h3>OMNIWave</h3><p class="card-role">Social Media Intern</p><p class="card-description">Produced and edited short-form biotech content, monitored trends, and created posts to support engagement and digital marketing.</p></div><div class="card-tags"><span>Content creation</span><span>Digital marketing</span></div></article>
-          <article class="card reveal"><div class="card-top"><span class="card-index">02</span><span class="card-type">Student leadership</span></div><div><p class="card-category">Communications · Design</p><h3>Student Government</h3><p class="card-role">Public Relations Director</p><p class="card-description">Managed class social media, designed graphics for announcements and activities, and collaborated on class events.</p></div><div class="card-tags"><span>Public relations</span><span>Graphic design</span><span>Events</span></div></article>
-          <article class="card reveal"><div class="card-top"><span class="card-index">03</span><span class="card-type">Community</span></div><div><p class="card-category">Culture · Collaboration</p><h3>Jewish Student Union</h3><p class="card-role">Club Member</p><p class="card-description">Helped brainstorm events and activities and took part in assemblies promoting cultural awareness.</p></div><div class="card-tags"><span>Community</span><span>Collaboration</span></div></article>
-          <article class="card reveal"><div class="card-top"><span class="card-index">04</span><span class="card-type">Creative practice</span></div><div><p class="card-category">Dance · Performance</p><h3>Black Box Studios &amp; Dolce Vita Ballroom</h3><p class="card-role">Dance student and performer</p><p class="card-description">Studied contemporary, jazz, and ballroom; performed with Black Box Studios and competed locally with Dolce Vita Ballroom Dance.</p></div><div class="card-tags"><span>Performance</span><span>Teamwork</span></div></article>
-          <article class="card card-feature reveal"><div class="card-top"><span class="card-index">05</span><span class="card-type">International program</span></div><div><p class="card-category">Marketing · Leadership</p><h3>Universitat Autònoma de Barcelona</h3><p class="card-role">Pre-college program</p><p class="card-description">Completed a two-week program with marketing and leadership courses, collaborating with peers from around the world.</p></div><div class="card-tags"><span>Marketing</span><span>Leadership</span></div></article>
-          <article class="card reveal"><div class="card-top"><span class="card-index">06</span><span class="card-type">Recognition</span></div><div><p class="card-category">Academic achievement</p><h3>Miami Country Day School</h3><p class="card-role">Head of School List &amp; Director’s List</p><p class="card-description">Recognized on the Head of School List and Director’s List throughout high school.</p></div><div class="card-tags"><span>Academics</span><span>Recognition</span></div></article>
-        </div>
-      </div>
-    </section>
+<!-- HOME -->
 
-    <section class="section skills" id="skills" aria-labelledby="skills-title">
-      <div class="container skills-grid">
-        <div class="skills-heading reveal"><p class="section-kicker">03 / What I bring</p><h2 id="skills-title">Tools &amp;<br><em>strengths.</em></h2><p>Curiosity, care, and a willingness to learn are at the center of how I work.</p></div>
-        <div class="skills-content reveal">
-          <h3>Professional strengths</h3>
-          <div class="skill-tags" aria-label="Professional strengths"><span>Communication</span><span>Content creation</span><span>Social media</span><span>Teamwork</span><span>Critical thinking</span><span>Adaptability</span><span>Open-mindedness</span><span>Creative problem-solving</span></div>
-          <div class="skills-lower"><div><h3>Languages</h3><div class="language-list"><span>English</span><span>Spanish</span></div></div><div class="education"><h3>Education</h3><p><strong>Tulane University</strong><br>Miami Country Day School · Class of 2026<br>8 AP &amp; Advanced courses · 6 Honors courses</p></div></div>
-        </div>
-      </div>
-    </section>
+<header class="hero reveal" id="home">
+  <p class="eyebrow">Communications · Creative · Culture</p>
 
-    <section class="contact" id="contact" aria-labelledby="contact-title">
-      <div class="container contact-grid reveal">
-        <div><p class="section-kicker">04 / Contact</p><h2 id="contact-title">Let’s make<br><em>something matter.</em></h2><p class="contact-intro">Open to new connections, creative collaborations, and professional opportunities.</p></div>
-        <div class="contact-links">
-          <a class="contact-item" href="mailto:myalyssa2008@icloud.com"><span class="contact-label">Email</span><span class="contact-value">myalyssa2008@icloud.com</span><span class="contact-arrow" aria-hidden="true">↗</span></a>
-          <div class="contact-item contact-placeholder"><span class="contact-label">LinkedIn</span><span class="contact-value">Add your LinkedIn profile URL</span><span class="contact-arrow" aria-hidden="true">↗</span></div>
-          <p class="contact-note">Email is the best way to reach me. LinkedIn link coming soon.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+  <h1>Alyssa<br>White.</h1>
 
-  <footer class="footer"><div class="container footer-inner"><a class="footer-brand" href="#top">AW<span>.</span></a><p>Made with intention · © <span id="year">2026</span> Alyssa White</p><a class="back-top" href="#top">Back to top ↑</a></div></footer>
+  <p class="hero-subtitle">
+    Where communication meets creativity.
+  </p>
+
+  <p class="hero-description">
+    A communications student at Tulane University
+    passionate about public relations, digital media,
+    creative storytelling, and the worlds of fashion,
+    film, and music.
+  </p>
+
+  <div class="hero-bottom">
+    <span>NEW ORLEANS, LOUISIANA</span>
+    <a href="#about">DISCOVER MORE ↓</a>
+  </div>
+</header>
+
+<!-- ABOUT -->
+
+<section class="content-section" id="about">
+  <p class="section-number">01 / GET TO KNOW ME</p>
+  <h2 class="section-heading">A little about me.</h2>
+
+  <p class="about-text">
+    I'm Alyssa, a Communications student at Tulane
+    University with a passion for creativity,
+    storytelling, and connecting people through media.
+  </p>
+
+  <p class="about-extra">
+    I'm particularly interested in the intersection
+    of public relations, social media, and the creative
+    industries. From fashion and film to music and
+    digital culture, I'm fascinated by how brands
+    communicate their identities and build meaningful
+    relationships with audiences.
+
+    I enjoy bringing ideas to life through content
+    creation, visual communication, collaboration,
+    and creative problem-solving.
+  </p>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section class="content-section" id="experience">
+  <p class="section-number">02 / WHAT I'VE DONE</p>
+  <h2 class="section-heading">Experience & involvement.</h2>
+
+  <div class="experience-grid">
+
+    <article class="experience-card">
+      <span class="card-number">01</span>
+      <h3>Social Media Intern</h3>
+      <p class="card-subtitle">OMNIWave</p>
+      <p>
+        Produced and edited short-form biotech content.
+        Monitored trends and created posts to boost
+        engagement. Gained experience in digital
+        marketing and content strategy.
+      </p>
+    </article>
+
+    <article class="experience-card">
+      <span class="card-number">02</span>
+      <h3>Public Relations Director</h3>
+      <p class="card-subtitle">Student Government</p>
+      <p>
+        Managed class social media and communications.
+        Designed digital graphics for announcements
+        and activities. Collaborated with the student
+        government on planning class events.
+      </p>
+    </article>
+
+    <article class="experience-card">
+      <span class="card-number">03</span>
+      <h3>Club Member</h3>
+      <p class="card-subtitle">Jewish Student Union</p>
+      <p>
+        Attended weekly club meetings, brainstormed
+        and planned events and activities, and
+        organized assemblies promoting cultural
+        awareness.
+      </p>
+    </article>
+
+    <article class="experience-card">
+      <span class="card-number">04</span>
+      <h3>Dance</h3>
+      <p class="card-subtitle">
+        Black Box Studios & Dolce Vita Ballroom
+      </p>
+      <p>
+        Trained in contemporary, jazz, and ballroom
+        dance. Performed with Black Box Studios
+        and competed locally with Dolce Vita
+        Ballroom Dance.
+      </p>
+    </article>
+
+    <article class="experience-card">
+      <span class="card-number">05</span>
+      <h3>Pre-College Program</h3>
+      <p class="card-subtitle">
+        Universidad Autónoma de Barcelona
+      </p>
+      <p>
+        Completed a two-week pre-college program
+        in Spain, took marketing and leadership
+        courses, and collaborated with international
+        peers.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+
+<section class="content-section" id="education">
+  <p class="section-number">03 / EDUCATION</p>
+  <h2 class="section-heading">Academic background.</h2>
+
+  <div class="education-card">
+    <h3>Tulane University</h3>
+    <p>Communications · Undergraduate Student</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+
+<section class="content-section" id="skills">
+  <p class="section-number">04 / WHAT I BRING</p>
+  <h2 class="section-heading">Skills & interests.</h2>
+
+  <p class="about-extra">
+    A combination of communication, creativity,
+    and an interest in the ever-evolving media landscape.
+  </p>
+
+  <div class="skills-grid">
+    <span class="skill">Public Relations</span>
+    <span class="skill">Social Media</span>
+    <span class="skill">Content Creation</span>
+    <span class="skill">Digital Graphics</span>
+    <span class="skill">Communication</span>
+    <span class="skill">Team Collaboration</span>
+    <span class="skill">Creative Thinking</span>
+    <span class="skill">Adaptability</span>
+    <span class="skill">Trend Research</span>
+  </div>
+
+  <h3 style="font-family:Georgia,serif;font-weight:normal;
+  font-size:27px;margin-top:65px;">
+    Areas of interest
+  </h3>
+
+  <div class="interests">
+    <div class="interest">Fashion</div>
+    <div class="interest">Film</div>
+    <div class="interest">Music</div>
+    <div class="interest">Pop Culture</div>
+    <div class="interest">Digital Media</div>
+    <div class="interest">Brand Storytelling</div>
+  </div>
+
+  <p class="about-extra" style="margin-top:45px;">
+    Languages: English & Spanish
+  </p>
+</section>
+
+<!-- CONTACT -->
+
+<section class="content-section contact-section" id="contact">
+  <p class="section-number">05 / LET'S CONNECT</p>
+
+  <h2 class="section-heading">
+    Have something<br>creative in mind?
+  </h2>
+
+  <p>
+    I'm always interested in connecting with
+    creative people and exploring new opportunities.
+  </p>
+
+  <a class="contact-link"
+     href="mailto:YOUR_EMAIL_HERE">
+     Get in touch
+  </a>
+</section>
+
+<footer>
+  <span>© 2026 ALYSSA WHITE</span>
+  <span>MADE WITH CREATIVITY & INTENTION.</span>
+</footer>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const button = document.getElementById("theme-toggle");
+
+  button.textContent =
+    document.body.classList.contains("dark")
+    ? "LIGHT MODE"
+    : "DARK MODE";
+}
+</script>
+
 </body>
 </html>
+
